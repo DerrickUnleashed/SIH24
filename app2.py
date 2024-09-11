@@ -26,7 +26,7 @@ apikey = os.getenv("API_KEY")
 st.set_page_config(page_title="Breaking Bonds", layout="centered")
 col1, col2, col3 = st.columns([1, 30, 1])
 with col2:
-    st.image("/Users/derricksamuel/Desktop/img.jpeg", use_column_width=True)
+    st.image("img.jpeg", use_column_width=True)
 
 def hide_hamburger_menu():
     st.markdown("""
@@ -48,7 +48,7 @@ if "memory" not in st.session_state:
 def load_embeddings():
     return HuggingFaceEmbeddings(model_name="law-ai/InLegalBERT")
 
-directory_path = '/Users/derricksamuel/Desktop/BreakingBonds-Chatbot/data'
+directory_path = 'data'
 faiss_index_path = "ipc_embed_db/index.faiss"
 
 if not os.path.isfile(faiss_index_path):
@@ -142,17 +142,17 @@ def recognize_speech_with_picovoice():
         recording = sd.rec(int(duration * freq), samplerate=freq, channels=1, dtype='int16')
         sd.wait()
         print("Recording complete.")
-        write("/Users/derricksamuel/Desktop/BreakingBonds-Chatbot/temp.wav", freq, recording)
+        write("temp.wav", freq, recording)
         print("Audio files saved.")
     except Exception as e:
         print(f"An error occurred: {e}")
     st.write("Processing the Voice...")
     leopard = pvleopard.Leopard(
                 access_key=apikey,
-                model_path="/Users/derricksamuel/Desktop/BreakingBonds-Chatbot/leopard_params.pv",
-                library_path="/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pvleopard/lib/mac/arm64/libpv_leopard.dylib"
+                model_path="leopard_params.pv",
+                library_path="libpv_leopard.dylib"
             )
-    transcript, words = leopard.process_file('/Users/derricksamuel/Desktop/BreakingBonds-Chatbot/temp.wav')
+    transcript, words = leopard.process_file('temp.wav')
     print(transcript)
     leopard.delete()
     return transcript.strip()

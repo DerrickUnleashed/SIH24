@@ -15,7 +15,7 @@ st.set_page_config(page_title="Breaking Bonds", layout="centered")
 
 col1, col2, col3 = st.columns([1, 30, 1])
 with col2:
-    st.image("/Users/derricksamuel/Desktop/img.jpeg", use_column_width=True)
+    st.image("img.jpeg", use_column_width=True)
 
 def hide_hamburger_menu():
     st.markdown("""
@@ -36,7 +36,7 @@ if "memory" not in st.session_state:
 @st.cache_resource
 def load_embeddings():
     return HuggingFaceEmbeddings(model_name="law-ai/InLegalBERT")
-directory_path = '/Users/derricksamuel/Desktop/BreakingBonds-Chatbot/data'
+directory_path = 'data'
 faiss_index_path = "ipc_embed_db/index.faiss"
 
 if not os.path.isfile(faiss_index_path):

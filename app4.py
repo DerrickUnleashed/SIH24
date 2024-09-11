@@ -3,13 +3,13 @@ import streamlit as st
 import os
 
 # Load the CSV file (you can replace this with your file path)
-file_path = '/Users/derricksamuel/Downloads/DOLA_List_of_Advocate_Tamilnadu_2013_to_june2014.csv'
+file_path = 'DOLA_List_of_Advocate_Tamilnadu_2013_to_june2014.csv'
 df = pd.read_csv(file_path, encoding='ISO-8859-1')  # or use 'latin1'
 
 st.set_page_config(page_title="Breaking Bonds", layout="centered")
 col1, col2, col3 = st.columns([1, 30, 1])
 with col2:
-    st.image("/Users/derricksamuel/Desktop/img.jpeg", use_column_width=True)
+    st.image("img.jpeg", use_column_width=True)
 
 # Function to recommend lawyers based on input
 def recommend_lawyers(df, place, court_type):
