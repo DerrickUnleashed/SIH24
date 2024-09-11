@@ -2,6 +2,7 @@ import time
 import os
 import sys
 import streamlit as st
+from dotenv import load_dotenv
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
 from langchain_community.embeddings import HuggingFaceEmbeddings
@@ -20,6 +21,8 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 import wavio as wv
 
+load_dotenv()
+apikey = os.getenv("API_KEY")
 st.set_page_config(page_title="Breaking Bonds", layout="centered")
 col1, col2, col3 = st.columns([1, 30, 1])
 with col2:
@@ -115,7 +118,7 @@ for message in st.session_state.messages:
 def recognize_speech_with_picovoice():
     freq = 44100
     duration = 10
-    porcupine = pvporcupine.create(access_key="SSOIeU0BDZYbias4GT2AYMNpZehrR8zeJy0vY5lKY2u3i8hiNokUkg==",keywords=["jarvis"])
+    porcupine = pvporcupine.create(access_key=apikey,keywords=["jarvis"])
     
     recorder = PvRecorder(device_index=-1, frame_length=porcupine.frame_length)
     
@@ -145,7 +148,7 @@ def recognize_speech_with_picovoice():
         print(f"An error occurred: {e}")
     st.write("Processing the Voice...")
     leopard = pvleopard.Leopard(
-                access_key="SSOIeU0BDZYbias4GT2AYMNpZehrR8zeJy0vY5lKY2u3i8hiNokUkg==",
+                access_key=apikey,
                 model_path="/Users/derricksamuel/Desktop/BreakingBonds-Chatbot/leopard_params.pv",
                 library_path="/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pvleopard/lib/mac/arm64/libpv_leopard.dylib"
             )
