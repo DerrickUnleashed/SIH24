@@ -1,4 +1,4 @@
-# BharatLAW: AI IPC Legal advice Assistant 📘
+# BreakingBonds: AI IPC Legal advice Assistant 📘
 
 BharatLAW is a sophisticated legal advisory chatbot focused on providing detailed and contextually accurate responses about the Indian Penal Code. It utilizes a powerful combination of machine learning technologies to efficiently process and retrieve legal information.
 
